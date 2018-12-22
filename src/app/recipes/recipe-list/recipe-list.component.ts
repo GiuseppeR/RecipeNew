@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Recipe } from '../recipe.model';
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -10,16 +11,12 @@ export class RecipeListComponent implements OnInit {
 
   @Output() recipeWasSelected = new EventEmitter<Recipe>();
 
-  recipes: Recipe[] = [
-    // tslint:disable-next-line:max-line-length
-    new Recipe('Test', 'Solo un test', 'https://www.ricettedellanonna.net/wp-content/uploads/2017/01/Ricetta-frittelle-di-patate-e-cipolle.jpg'),
-    new Recipe('Test2', 'Solo un test', 'https://www.ricettedellanonna.net/wp-content/uploads/2017/01/Ricetta-frittelle-di-patate-e-cipolle.jpg'),
-    new Recipe('Test3', 'Solo un test', 'https://www.ricettedellanonna.net/wp-content/uploads/2017/01/Ricetta-frittelle-di-patate-e-cipolle.jpg')
-  ];
+  recipes: Recipe[];
 
-  constructor() { }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
+    this.recipes = this.recipeService.getRecipes();
   }
 
   onRecipeSelected(recipe: Recipe) {
