@@ -23,9 +23,4 @@ export class RecipesComponent implements OnInit {
     );
   }
 
-  // showDetails(event) {
-  //   // console.log(JSON.stringify(event));
-  //   this.selectedRecipe = event;
-  // }
-
 }
